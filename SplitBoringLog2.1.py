@@ -1,10 +1,10 @@
-# This is the newer version of Splitting Boring Log append
-# Bulild this into executable using "pyinstaller --onefile scriptName.py" command.
+# This is the newer version of Splitting Boring Log app
+# Build this into executable using "pyinstaller --onefile scriptName.py" command.
 # the app will ask user to set a x1,y1,x2,y2 area of the pdf file page ( the origin of x and y are the upper left corner of pdf page, measured in points, 1 in = 72points)
-# the starting page can help user skip the starting blank page.( type the natural page number, staring with 1), script will handle it and translate to the index starting with 0
-# in the first step, the app will determine if the text area can be read out or not and choose the correct to get the text
+# the starting page can help user skip the starting blank page.(use the natural page number, staring with 1), internally, the script will handle it and translate to the index starting with 0
+# in the first step, the app will determine if the text area can be directly read out or not ,and choose the correct method to get the text
 # text extraced or ocr-ed from pdf page will be stored in the csv file for user to review, 
-# after reviewing and correcting wrong numbers, user can click 2nd step the split the big pdf into smaller files the contains same text ( the boring number).
+# after reviewing and correcting wrong numbers, user can click 2nd step to split the big pdf into smaller files the contains same text (the boring log number).
 
 
 
