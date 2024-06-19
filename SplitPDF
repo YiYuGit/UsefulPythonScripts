@@ -1,0 +1,46 @@
+import os
+from PyPDF2 import PdfReader, PdfWriter
+
+def split_pdf(input_pdf_path, output_folder, pages_per_file):
+    # Create output folder if it doesn't exist
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    # Open the input PDF file
+    with open(input_pdf_path, 'rb') as input_file:
+        pdf_reader = PdfReader(input_file)
+        total_pages = len(pdf_reader.pages)
+        
+        # Calculate the number of files needed
+        num_files = total_pages // pages_per_file
+        if total_pages % pages_per_file != 0:
+            num_files += 1
+
+        # Iterate through each set of pages
+        for file_number in range(num_files):
+            # Create a new PDF writer for each set of pages
+            pdf_writer = PdfWriter()
+            start_page = file_number * pages_per_file
+            end_page = min((file_number + 1) * pages_per_file, total_pages)
+            for page_number in range(start_page, end_page):
+                pdf_writer.add_page(pdf_reader.pages[page_number])
+            
+            # Construct output PDF path
+            output_pdf_path = os.path.join(output_folder, f'pages_{start_page + 1}-{end_page}.pdf')
+
+            # Write the set of pages to a new PDF file
+            with open(output_pdf_path, 'wb') as output_file:
+                pdf_writer.write(output_file)
+
+# Example usage
+input_pdf_path = r'C:\pypdf\test.pdf'
+output_folder = r'C:\pypdf'
+pages_per_file = 1
+
+split_pdf(input_pdf_path, output_folder, pages_per_file)
+
+
+
+# Example usage
+#input_pdf_path = r'C:\pypdf\test.pdf'
+#output_folder = r'C:\pypdf'
