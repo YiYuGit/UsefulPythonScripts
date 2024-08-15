@@ -1,6 +1,6 @@
 import os
 import zipfile
-from PIL import Image
+from PIL import Image, ImageFile
 import piexif
 import shutil
 
